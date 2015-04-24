@@ -1,4 +1,9 @@
 class CheckInController < ApplicationController
+  def index
+  @event = Event.find(params[:event_id])
+  @location = Location.find_by(tag: params[:tag])
+end
+
 def success
   @event = Event.find(params[:event_id])
   @location = Location.find(params[:location_id])
@@ -14,4 +19,5 @@ def success
       format.json { render json: @participant.errors, status: :unprocessable_entity }
     end
   end
+end
 end
